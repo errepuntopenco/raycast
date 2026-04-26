@@ -8,7 +8,6 @@ export class BloomProvider implements FileManagerProvider {
   async getSelectedPaths(): Promise<string[]> {
     const result = (await runAppleScript(`
       tell application "Bloom"
-        if not (exists front window) then return ""
         set selectedItems to selection of front window
         if selectedItems is missing value then return ""
 
