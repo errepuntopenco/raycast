@@ -1,10 +1,10 @@
 # Open With App Changelog
 
-## [Multi-file-manager support] - 2026-04-26
+## [Add Bloom support] - {PR_MERGE_DATE}
 
-- Added support for reading the selection from Bloom in addition to Finder
-- The active file manager is detected from the frontmost application; Finder is used as the fallback
-- Introduced a pluggable file-manager provider interface so additional managers can be added later
+- Read the selection from Bloom in addition to Finder
+- Detect the frontmost file manager at runtime; Finder remains the fallback
+- Refactor selection retrieval behind a pluggable provider interface so other file managers can be added later
 
 ## [Fix Recommended Applications section position] - 2024-11-26
 

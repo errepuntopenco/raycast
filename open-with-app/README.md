@@ -1,21 +1,16 @@
 # Open With App
 
-Raycast extension that lets you choose any installed macOS application to open
-the items currently selected in your file manager.
+Choose any installed macOS application to open the items currently selected
+in your file manager.
 
-## Supported file managers
+The frontmost application is checked at runtime: when it's a supported file
+manager (currently **Finder** or **[Bloom](https://bloomapp.club)**), the
+selection is read from there. Finder is the fallback in every other case,
+so the command keeps working from any context.
 
-The extension auto-detects the frontmost application and reads the selection
-from it. If the frontmost app isn't a supported file manager, Finder is used
-as the fallback.
-
-| File manager | Bundle id | Notes |
-|---|---|---|
-| Finder | `com.apple.finder` | Works whether or not Finder is frontmost. |
-| [Bloom](https://bloomapp.club) | `com.asiafu.Bloom` | Reads `selection of front window` via AppleScript. |
-
-## Adding a new file manager
+## Adding a file manager
 
 Implement the `FileManagerProvider` interface in `src/file-managers/types.ts`
-and register it in `src/file-managers/registry.ts`. The rest of the extension
-picks it up automatically.
+and register the new class in `src/file-managers/registry.ts`. Each provider
+needs a display name, the app's bundle identifier, and a method that returns
+the selected POSIX paths (typically via `runAppleScript`).
