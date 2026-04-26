@@ -107,8 +107,8 @@ export default function Command() {
     try {
       const paths = await provider.getSelectedPaths();
       return { provider, items: paths.map((path) => ({ path }) as FileSystemItem) };
-    } catch {
-      void showFailureToast(`Error getting selection from ${provider.name}`);
+    } catch (error) {
+      void showFailureToast(error, { title: `Error getting selection from ${provider.name}` });
       return { provider, items: [] as FileSystemItem[] };
     }
   });
