@@ -3,7 +3,7 @@ import type { FileManagerProvider } from "./types";
 
 export class BloomProvider implements FileManagerProvider {
   readonly name = "Bloom";
-  readonly bundleId = "com.stclairsoft.Bloom";
+  readonly bundleId = "com.asiafu.Bloom";
 
   async getSelectedPaths(): Promise<string[]> {
     const result = (await runAppleScript(`

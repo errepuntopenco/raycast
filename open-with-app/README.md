@@ -12,7 +12,7 @@ as the fallback.
 | File manager | Bundle id | Notes |
 |---|---|---|
 | Finder | `com.apple.finder` | Works whether or not Finder is frontmost. |
-| [Bloom](https://www.bloomapp.com) | `com.stclairsoft.Bloom` | Reads `selection of front window` via AppleScript. |
+| [Bloom](https://bloomapp.club) | `com.asiafu.Bloom` | Reads `selection of front window` via AppleScript. |
 
 ## Adding a new file manager
 
