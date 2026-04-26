@@ -12,15 +12,23 @@ export class BloomProvider implements FileManagerProvider {
         set selectedItems to selection of front window
         if selectedItems is missing value then return ""
 
+        -- normalize to a list: Bloom may return a single file reference for a single selection
+        if class of selectedItems is not list then
+          set selectedItems to {selectedItems}
+        end if
+
         set posixPaths to {}
-        repeat with anItem in selectedItems
+        repeat with i from 1 to (count of selectedItems)
+          set anItem to item i of selectedItems
+          set posixPath to ""
           try
-            set end of posixPaths to POSIX path of anItem
+            set posixPath to POSIX path of (anItem as alias)
           on error
             try
-              set end of posixPaths to (anItem as text)
+              set posixPath to POSIX path of anItem
             end try
           end try
+          if posixPath is not "" then set end of posixPaths to posixPath
         end repeat
 
         set AppleScript's text item delimiters to linefeed
@@ -31,6 +39,6 @@ export class BloomProvider implements FileManagerProvider {
     return result
       .split(/\r?\n/)
       .map((path) => path.trim())
-      .filter((path) => path.length > 0);
+      .filter((path) => path.startsWith("/"));
   }
 }
